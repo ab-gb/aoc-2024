@@ -93,6 +93,7 @@ export const countSafe = (rows: string[], damper: number) => {
 			// log ( rowAsNumbers.join(" ") );
 		}
 	});
+	
 
 	return { count: safeRows.length, safeRows, unsafeRows };
 }
