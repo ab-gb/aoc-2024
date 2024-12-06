@@ -137,10 +137,10 @@ export const getDiagnals = (grid: string[][]) : string[] => {
 	return diagnals;
 }
 
-export const countXmas = ( array: string[]) : number => {
+export const countXmas = ( list: string[]) : number => {
 	let sum = 0;
 
-	array.forEach( (row) => {
+	list.forEach( (row) => {
 		sum += row.match(/(XMAS)/g)?.length ?? 0;
 		sum += row.match(/SAMX/g)?.length ?? 0;
 	});

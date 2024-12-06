@@ -3,6 +3,35 @@ const meta = {
 	timestamp: ''
 };
 
+
+// create a method that receives a function that will execute the function and log start and end time.
+// deno-lint-ignore ban-types
+export const perf = (func: Function) => {
+	const start = performance.now();
+	const result = func();
+	const end = performance.now();
+	
+	// if greater than 1000ms, log in second with 3 decimal places
+	if (end-start > 1000) {
+		log ("time:" + ((end-start)/1000).toFixed(3) + "s");
+	} else {
+		log ("time:" + ((end-start).toFixed(5)) + "ms");
+	}
+	return result;
+}
+
+export const getGrid = (input: string) : string[][] => {
+	return input.split("\n").map(row => row.split(""));
+}
+
+export const getRows = (grid: string[][]) : string[] => {
+	return grid.map(row => row.join(""));
+}
+
+export const getColumns = (grid: string[][]) : string[] => {
+	return grid[0].map((_, i) => grid.map(row => row[i]).join(""));
+}
+
 export const transposeArray= <T>(matrix: T[][]): T[][] => {
 	const numRows = matrix.length;
 	const numCols = matrix[0].length;

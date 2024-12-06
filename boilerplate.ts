@@ -1,74 +1,81 @@
 const tests = {
 	input: 
-`
-
-`,
-	first: 1,
+`....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#...`,
+	first: 0,
 	second: 0
 };
 
-import { log, logList } from "../../tools.ts";
+import { getGrid, log, perf } from "../../tools.ts";
 import { puzzle } from "../../puzzle.ts";
+import { assert } from "@std/assert";
 
-const findAnswers = (entries: string[][] | string[][][]) => {
-	const answers = { first: 0, second: 0 };
-	log(entries);
+const defineSymbols = () => {
+	const symbols = {
+	};
+	return symbols;
+};
+
+const symbols = defineSymbols();
+
+const findAnswers = (input: string) => {
+	log (input);
+	const part1 = perf ( () => solvePart1());
+	const part2 = perf ( () => solvePart2());
+
+	const answers = { first: part1, second: part2 };
 	return answers;
 };
+
+const solvePart1 = (): number=> {
+	return 0;
+}
+
+const solvePart2 = (): number=> {
+	return 0;
+}
+
+const solveBoth = async (): Promise<{first:number, second:number}> => {
+	if(tests.first === 0){ return {first: 0, second: 0 }};
+	const puzzle_input = await puzzle.parseInput();
+	const answers = findAnswers(puzzle_input.input);
+	return answers;
+};
+
 const testPart1 = async (input: string): Promise<boolean> => {
 	if(tests.first === 0){ return false; }
 	const puzzle_input = await puzzle.parseInput(input);
-	const entries = puzzle_input.blocks.length > 0 ? puzzle_input.blocks : puzzle_input.blocks[0];
-	const answers = findAnswers(entries);
-	return answers.first === tests.first;
+	const answers = findAnswers(puzzle_input.input);
+
+	log ( answers.first, tests.first);
+	return answers.first == tests.first;
 };
-const solvePart1 = async (): Promise<number> => {
-	if(tests.first === 0){ return 0; }
-	const puzzle_input = await puzzle.parseInput();
-	const entries = puzzle_input.blocks.length > 0 ? puzzle_input.blocks : puzzle_input.blocks[0];
-	const answers = findAnswers(entries);
-	return answers.first;
-};
+
 const testPart2 = async (input: string): Promise<boolean> => {
 	if(tests.second === 0){ return false; }
 	const puzzle_input = await puzzle.parseInput(input);
-	const entries = puzzle_input.blocks.length > 0 ? puzzle_input.blocks : puzzle_input.blocks[0];
-	const answers = findAnswers(entries);
+	const answers = findAnswers(puzzle_input.input);
+	log ( answers.second, tests.second);
+
 	return answers.second === tests.second;
 };
-const solvePart2 = async (): Promise<number> => {
-	if(tests.second === 0){ return 0; }
-	const puzzle_input = await puzzle.parseInput();
-	const entries = puzzle_input.blocks.length > 0 ? puzzle_input.blocks : puzzle_input.blocks[0];
-	const answers = findAnswers(entries);
-	return answers.second;
-};
-
-
-const defineSymbols = () => {
-	const symbols = {};
-	return symbols;
-};
-const symbols = defineSymbols();
-const scorePart1 = () => {
-	const scoring = {} as {[key: string]: number};
-	return scoring;
-}
-const scoring = scorePart1();
-const scorePart2 = () => {
-	const scoring = {} as {[key: string]: number};
-	return scoring;
-}
-const scoring_2 = scorePart2();
 
 const part1_correct = await testPart1(tests.input);
-let check = part1_correct ? '✅' : '❌';
-
-const part1 = await solvePart1();
-log("    part 1: ", part1, check);
+const checkPart1 = part1_correct ? '✅' : '❌';
 
 const part2_correct = await testPart2(tests.input);
-check = part2_correct ? '✅' : '❌';
+const checkPart2 = part2_correct ? '✅' : '❌';
 
-const part2 = await solvePart2();
-log("    part 2: ", part2, check);
+const {first, second} = part1_correct ? await solveBoth() : {first: null, second: null};
+
+log("    part 1: ", first, checkPart1);
+log("    part 2: ", second, checkPart2);
+

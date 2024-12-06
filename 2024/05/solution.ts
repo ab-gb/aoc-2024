@@ -232,11 +232,6 @@ const solvePart2 = async (): Promise<number> => {
 };
 
 
-const defineSymbols = () => {
-	const symbols = {};
-	return symbols;
-};
-const symbols = defineSymbols();
 const scorePart1 = () => {
 	const scoring = {} as {[key: string]: number};
 	return scoring;
