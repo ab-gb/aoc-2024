@@ -3,6 +3,8 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+*input.txt
+*challenge.txt
 *.code-workspace
 .history/
 .DS_Store
