@@ -43,7 +43,9 @@ interface PageLists {
 const findAnswers = (input: string) => {
 	const parts = input.split("\n\n");
 
-	const sortingRules = parts[0].split("\n");
+	const sortingRules = parts[0]
+		.split("\n")
+		.map((rule) => rule.split("|"));
 
 	const pages = parts[1].split("\n");
 
@@ -54,14 +56,13 @@ const findAnswers = (input: string) => {
 	return answers;
 };
 
-const categorizePageListsWithSorting = (pageLists: string[], rules: string[]): PageLists => {
+const categorizePageListsWithSorting = (pageLists: string[], rules: string[][]): PageLists => {
 	const validPageLists = [] as string[];
 	const invalidPageLists = [] as string[];
-	const splitRules = rules.map(rule => rule.split("|"));
 
 	pageLists.forEach((pageList) => {
 
-		const sortedPageSet = sortPageset(pageList, splitRules).join(",");
+		const sortedPageSet = sortPageset(pageList, rules).join(",");
 		if ( pageList === sortedPageSet ) {
 			validPageLists.push(pageList);
 		} else {
@@ -114,6 +115,7 @@ export const sumMiddleNumber = (arr: string[]): number => {
 
 	return sum;
 }
+
 export const getMiddleOfArray = (arr: string[]): number => {
 	const middle = Math.floor(arr.length / 2);
 	return parseInt(arr[middle]);
@@ -125,7 +127,7 @@ const perf = (func: Function) => {
 	const start = performance.now();
 	const result = func();
 	const end = performance.now();
-	log ("time:" + (end-start));
+	log ("time:" + (end-start) + "ms");
 	return result;
 }
 
