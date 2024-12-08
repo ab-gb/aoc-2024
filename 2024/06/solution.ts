@@ -1,15 +1,14 @@
 const tests = {
 	input: 
-`....#.....
-.........#
-..........
-..#.......
-.......#..
-..........
-.#..^.....
-........#.
-#.........
-......#...`,
+`190: 10 19
+3267: 81 40 27
+83: 17 5
+156: 15 6
+7290: 6 8 6 15
+161011: 16 10 13
+192: 17 8 14
+21037: 9 7 18 13
+292: 11 6 16 20`,
 	first: 41,
 	second: 6
 };
@@ -63,7 +62,9 @@ const findAnswers = (input: string) => {
 		}
 	}
 
-	const part1 = grid.reduce((acc, row) => acc + row.filter(cell => cell === "X").length, 0);
+	log ("part1:");
+	const part1 = perf( () => grid.reduce((acc, row) => acc + row.filter(cell => cell === "X").length, 0));
+	log ("part2:");
 	const part2 = perf ( () => solve2(grid, startingPosition));
 
 	const answers = { first: part1, second: part2 };
@@ -87,7 +88,7 @@ const solve2 = (grid: string[][], startingPosition: { x: number, y: number }) =>
 	assert ( obstaclePositionsToTest.filter(xy => xy === `${startingPosition.x},${startingPosition.y}`).length === 0, "Starting position is in the list of obstacles");
 
 	let loopObstacles = 0;
-	grid[startingPosition.y][startingPosition.x] = symbols.CURRENT_POSITION; // reset the starting position in the
+	grid[startingPosition.y][startingPosition.x] = symbols.CURRENT_POSITION; 
 
 	obstaclePositionsToTest.forEach(xy => {
 		const [x, y] = xy.split(",").map(Number);

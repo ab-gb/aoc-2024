@@ -109,16 +109,16 @@ export const isSafe = (numberList: number[], damper: number) : boolean => {
 		if (increasedUnsafeLevelCount <= damper){
 			const otherNumber = numberList[i-incOffset];
 			const difference = numberList[i] - otherNumber;
-			log ( numberList.join(" ") );
-			log ("compare..." + numberList[i] + "-" + otherNumber +  "=" + difference);
+			// log ( numberList.join(" ") );
+			// log ("compare..." + numberList[i] + "-" + otherNumber +  "=" + difference);
 
 			if (difference <= 0 || difference > 3){
 				increasedUnsafeLevelCount++;
 				incOffset++;
-				log ("bad!");
+				// log ("bad!");
 			} else {
 				incOffset = 1;
-				log ("good!");
+				// log ("good!");
 			}
 		}
 
@@ -246,14 +246,14 @@ const scorePart2 = () => {
 }
 const scoring_2 = scorePart2();
 
-// const part1_correct = await testPart1(tests.input);
-// let check = part1_correct ? '✅' : '❌';
+const part1_correct = await testPart1(tests.input);
+let check = part1_correct ? '✅' : '❌';
 
-// const part1 = await solvePart1();
-// log("    part 1: ", part1, check);
+const part1 = await solvePart1();
+log("    part 1: ", part1, check);
 
-// const part2_correct = await testPart2(tests.input);
-// check = part2_correct ? '✅' : '❌';
+const part2_correct = await testPart2(tests.input);
+check = part2_correct ? '✅' : '❌';
 
-// const part2 = await solvePart2();
-// log("    part 2: ", part2, check);
+const part2 = await solvePart2();
+log("    part 2: ", part2, check);

@@ -14,12 +14,12 @@ MXMXAXMASX`,
 	second: 9
 };
 
-import { log, logList } from "../../tools.ts";
+import { log, logList, perf } from "../../tools.ts";
 import { puzzle } from "../../puzzle.ts";
 
 const findAnswers = (input: string, entries: string[][] | string[][][]) => {
-	const part1 = solutionPart1(input);
-	const part2 = solutionPart2(input);
+	const part1 = perf ( () => solutionPart1(input));;
+	const part2 = perf ( () => solutionPart2(input));
 
 	const answers = { first: part1, second: part2 };
 	return answers;

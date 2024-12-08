@@ -32,7 +32,7 @@ const tests = {
 	second: 123
 };
 
-import { log, logList } from "../../tools.ts";
+import { log, perf } from "../../tools.ts";
 import { puzzle } from "../../puzzle.ts";
 
 interface PageLists {
@@ -119,16 +119,6 @@ export const sumMiddleNumber = (arr: string[]): number => {
 export const getMiddleOfArray = (arr: string[]): number => {
 	const middle = Math.floor(arr.length / 2);
 	return parseInt(arr[middle]);
-}
-
-// create a method that receives a function that will execute the function and log start and end time.
-// deno-lint-ignore ban-types
-const perf = (func: Function) => {
-	const start = performance.now();
-	const result = func();
-	const end = performance.now();
-	log ("time:" + (end-start) + "ms");
-	return result;
 }
 
 const categorizePageLists = (pageLists: string[], rules: string[]): PageLists => {
@@ -230,7 +220,6 @@ const solvePart2 = async (): Promise<number> => {
 	const answers = findAnswers(puzzle_input.input);
 	return answers.second;
 };
-
 
 const scorePart1 = () => {
 	const scoring = {} as {[key: string]: number};
