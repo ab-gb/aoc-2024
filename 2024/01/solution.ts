@@ -16,8 +16,10 @@ import { puzzle } from "../../puzzle.ts";
 const findAnswers = (entries: string[][] | string[][][]) => {
 	log(entries);
 
-	// const cols = transpose(entries);
+	const cols = transpose(entries);
 	/** Get Coding! */
+
+	// 1651298
 
 	const answers = { first: 0, second: 0 };
 	return answers;
