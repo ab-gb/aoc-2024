@@ -128,7 +128,7 @@ const getCornerCount = (r: number, c: number, grid: string [][]): number => {
 	const diagnalTopLeft 		= getCell(r-1,c-1, grid);
 	const diagnalBottomRight 	= getCell(r+1,c+1, grid);
 	const diagnalBottomLeft 	= getCell(r+1,c-1, grid);
-	
+
 	///////////////////////////////////////////////
 	// Inner Corners
 	///////////////////////////////////////////////
@@ -158,7 +158,7 @@ const getCornerCount = (r: number, c: number, grid: string [][]): number => {
 const getCell = (r: number, c: number, grid: string [][]): string | null => {
 	try {
 		return grid[r][c];
-	} catch (e) {	
+	} catch (e) {
 		return null;
 	}
 }
